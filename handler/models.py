@@ -6,7 +6,7 @@ import random
 class Teacher(models.Model):
     name = models.CharField('Имя учителя', max_length=120)
     lastname = models.CharField('Фамилия учителя', max_length=120)
-    phone = models.PositiveIntegerField('Номер учителя')
+    phone = models.CharField('Номер учителя', max_length=120)
     subject = models.CharField('Предмет', max_length=120)
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Аккаунт пользователя на сайте')
     status = models.BooleanField('Статус', default=False)

@@ -50,7 +50,6 @@ def index(request):
 
 def register(request):
     if request.method == 'POST':
-        acc_type = request.POST.get('tatp')
         username = request.POST.get('username')
         firstname = request.POST.get('firstname')
         lastname = request.POST.get('lastname')
@@ -77,7 +76,7 @@ def register(request):
                 user = User.objects.create_user(username=username, password=password1, email=email, first_name=firstname, last_name=lastname)
                 user.save()
 
-                teacher = Teacher(name=firstname, lastname=lastname,phone=phone, subject=subject, user=user)
+                teacher = Teacher(name=firstname, lastname=lastname, phone=phone, subject=subject, user=user)
                 teacher.save()
                 messages.success(request, 'Пользователь создан успешно! Вы можете войти в аккаунт')
                 return redirect('index')
