@@ -15,6 +15,7 @@ class TeacherAdmin(admin.ModelAdmin):
 # group admin
 class GroupStudentInstanceInline(admin.TabularInline):
     model = Student
+    fields = ('name','lastname')
     extra = 1
 
 @admin.register(Group)
