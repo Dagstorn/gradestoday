@@ -11,9 +11,9 @@
                   <h6 class="card-subtitle mb-2 text-muted">Группа: {{student.group}}</h6>
                   <h6 class="card-subtitle mb-2 text-muted">Уникальный код: {{student.unique_code}}</h6>
 
-                  <h6 class="card-subtitle mb-2 text-muted">Количество Комментарий: {{student.getCommentsCount}}</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">Количество комментариев: {{student.getCommentsCount}}</h6>
                   {% if teacher %}
-                  <a href="{% url 'create_comment' student.id %}" class="card-link">Написать Комментарий</a>
+                  <a href="{% url 'create_comment' student.id %}" class="card-link">Написать комментарий</a>
                   {% endif %}
                 </div>
             </div>

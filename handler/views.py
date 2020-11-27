@@ -127,14 +127,14 @@ def create_comment(request, id):
     if request.method == 'POST':
         title = request.POST.get('title')
         positive = request.POST.get('positive')
-        negative = request.POST.get('positive')
+        results = request.POST.get('results')
         user = request.user
         teacher = Teacher.objects.get(user=user)
 
 
         student = Student.objects.get(id=id)
 
-        new_comment = Comment(title=title, positive=positive, negative=negative, student=student, teacher=teacher)
+        new_comment = Comment(title=title, positive=positive, results=results, student=student, teacher=teacher)
         new_comment.save()
         
         messages.success(request, 'Комментарий сохранен!')
