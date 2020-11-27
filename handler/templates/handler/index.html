@@ -1,0 +1,86 @@
+{% extends 'handler/base.html' %}
+
+
+{% block content %}
+    <div class="container mt-5 mb-5">
+        <div class="row ">
+            <div class="col-md-6 d-flex justify-content-center">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Поиск ученика</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Введите код ученика чтобы посмотреть комментарии учителей</h6>
+                        <form method="GET" action="{% url 'student_comments' %}">
+                            
+                            <p class="card-text">
+                                <div class="row">
+                                    <div class="col-md">
+                                        <input type="text" name="code" class="form-control" placeholder="Уникальный код студента">
+                                    </div>
+                                </div>
+                                <div class="row mt-3 ">
+                                    <div class="col">
+                                        <button  class="btn btn-primary btn-block">Найти ученика</button>
+                                    </div>
+                                </div>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 d-flex justify-content-center">
+                <div class="card">
+                    <div class="card-body">
+                        {% if user.is_authenticated %}
+                        <div class="row">
+                            <div class="col">
+                                <h3>Вы вошли как {{ user.username }}</h3>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <a href="logout/" class="btn btn-primary">Выйти</a>
+                            </div>
+                        </div>
+
+                        {% else %}
+                        <h5 class="card-title">Войти в систему</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Вход для учителей</h6>
+                        <p class="card-text">
+                            {% if messages %}
+                            <div class="row ">
+                                <div class="col"> 
+                                {% for message in messages %}
+                                    <p class="alert alert-success">{{message}}</p>
+                                {% endfor %}  
+                                </div>                                
+                            </div>
+                            {% endif %}
+                            
+                            <form action="" method="POST">
+                                {% csrf_token %}
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" name="username" class="form-control" placeholder="Логин">
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col">
+                                <input type="password" name="password" class="form-control" placeholder="Пароль">
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <button  class="btn btn-primary btn-block">Войти</button>
+                                </div>
+                            </div>
+                            </form>
+                        </p>
+                        <a href="{% url 'register' %}"  class="card-link">Регистрация для учителей</a>
+                        {% endif %}
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

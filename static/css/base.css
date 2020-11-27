@@ -1,0 +1,57 @@
+html {
+    height: 100%;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+.navbar-brand {
+    font-weight: 400;
+}
+
+.nav-link {
+    font-weight: 600;
+    font-size: 18px;
+}
+.nav-link:hover {
+    color: white;
+}
+.card {
+    width: 100%;
+}
+footer {
+    background-color: rgb(41, 41, 41);
+    margin-top: auto;
+}
+.footer-row {
+    width: 100%;
+}
+.footer-row p {
+    color: whitesmoke;
+    font-weight: 400;
+    padding-top: 30px;
+    padding-bottom: 10px;
+}
+.passul {
+    list-style: none;
+    font-size: 12px;
+    padding-left: 0px;
+    padding-top: 10px;
+    color: #858585;
+    font-weight: 600;
+}
+@media (max-width: 767px) {
+    .card {
+        margin-top: 20px;
+    }
+}
+.navbar-brand {
+    width: 30%;
+}
+.navbar-brand .logo {
+    width: 40%;
+    height: auto;
+}
+.nav-link {
+}
