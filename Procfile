@@ -1,1 +1,1 @@
-web: gunicorn kolbot.wsgi
+web: gunicorn grades.wsgi
