@@ -48,10 +48,53 @@ footer {
 }
 .navbar-brand {
     width: 30%;
+    padding: 0;
 }
 .navbar-brand .logo {
-    width: 40%;
+    width: 60%;
     height: auto;
 }
-.nav-link {
+
+
+@media (max-width: 767px) {
+    .card {
+        margin-top: 20px;
+    }
+}
+.my-btn {
+    background-color: #25354C;
+    border: 1px solid #25354C;
+    color: white;
+    transition: 0.3s all;
+    padding: 10px 20px;
+}
+
+.my-btn:hover, .btn:hover, .btn:active, .btn:focus {
+    background-color: #192536;
+    border: 1px solid #1e2b3d;
+    color: white;
+    transition: 0.3s all;
+
+}
+.card-link {
+    color: #1e2b3d;
+    font-weight: 700;
+    text-transform: lowercase;
+}
+.card-link:hover {
+    color: #1e2b3d;
+    font-weight: 700;
+    text-transform: lowercase;
+    text-decoration: underline;
+
+}
+.link-f {
+    color: white;
+    cursor: pointer;
+}
+.link-f:hover {
+    color: white;
+    text-decoration: none;
+    text-decoration: underline;
+
 }

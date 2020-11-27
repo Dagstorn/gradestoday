@@ -61,7 +61,7 @@ class Student(models.Model):
 class Comment(models.Model):
     title =  models.CharField('Заголовок', max_length=200)
     date = models.DateTimeField(auto_now_add=True, verbose_name='Дата и время')
-    positive = models.TextField('Положительные стороны')
+    comment = models.TextField('Комментарий')
     results = models.TextField('Результаты')
     student = models.ForeignKey(Student, on_delete=models.CASCADE, verbose_name='Ученик')
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, verbose_name='Учитель')

@@ -23,7 +23,7 @@
                 <p>Вы ввели код ученика неверно либо ученика с таким кодом не существует.</p>
                 <p>Попробуйте ввести код корректно или запросить его заново!</p>
                 <hr>
-                <p class="mb-0"><a href="{% url 'index' %}">Попробовать еще раз</a></p>
+                <p class="mb-0"><a href="{% url 'index' %}" class="card-link">Попробовать еще раз</a></p>
               </div>
             {% endif %}
         </div>
@@ -41,9 +41,9 @@
                             <h6 class="card-subtitle mb-2 text-muted">Учитель: {{comment.getTeacherName}}  - {{comment.getTeacherPhone}}</h6>
                             <h6 class="card-subtitle mb-2 text-muted">Предмет: {{comment.getTeachersubject}}</h6>
 
-                            <p class="card-text">Положительные аспекты:<br>
+                            <p class="card-text">Комментарии:
                                 {{comment.positive|linebreaks}}
-                            </p><br>
+                            </p>
                             <p class="card-text">Результаты:<br>
                                 {{comment.results|linebreaks}}
                             </p>                            
