@@ -41,10 +41,10 @@
                             <h6 class="card-subtitle mb-2 text-muted">Учитель: {{comment.getTeacherName}}  - {{comment.getTeacherPhone}}</h6>
                             <h6 class="card-subtitle mb-2 text-muted">Предмет: {{comment.getTeachersubject}}</h6>
 
-                            <p class="card-text">Комментарии:
-                                {{comment.positive|linebreaks}}
+                            <p class="card-text mb-0">Комментарии:
+                                {{comment.comment|linebreaks}}                                            
                             </p>
-                            <p class="card-text">Результаты:<br>
+                            <p class="card-text mb-0">Результаты:
                                 {{comment.results|linebreaks}}
                             </p>                            
                             
