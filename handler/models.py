@@ -4,23 +4,18 @@ import string
 import random
 
 class Teacher(models.Model):
-    name = models.CharField('Имя учителя', max_length=120)
-    lastname = models.CharField('Фамилия учителя', max_length=120)
-    phone = models.CharField('Номер учителя', max_length=120)
-    subject = models.CharField('Предмет', max_length=120)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Аккаунт пользователя на сайте')
-    status = models.BooleanField('Статус', default=False)
+    name = models.CharField('Teacher name', max_length=120)
+    lastname = models.CharField('Last name', max_length=120)
+    phone = models.CharField('Phone number', max_length=120)
+    subject = models.CharField('Subject', max_length=120)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='User account')
+    status = models.BooleanField('Status', default=False)
 
     def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = "Учителя"
-        verbose_name_plural = "Учителя"
-
+        return self.name + " " + self.lastname
 
 class Group(models.Model):
-    name = models.CharField('Имя группы', max_length=120)
+    name = models.CharField('Group name', max_length=120)
 
     def __str__(self):
         return self.name
@@ -29,22 +24,15 @@ class Group(models.Model):
         students = Student.objects.filter(group = self)
         return students
     
-    class Meta:
-        verbose_name = "Группу"
-        verbose_name_plural = "Группы"
 
 class Student(models.Model):
-    name = models.CharField('Имя ученика', max_length=120)
-    lastname = models.CharField('Фамилия ученика', max_length=120)
-    group = models.ForeignKey(Group, on_delete=models.CASCADE, verbose_name='Группа')
-    unique_code = models.CharField('Код студента', max_length=11, default='1')
+    name = models.CharField('Student name', max_length=120)
+    lastname = models.CharField('Student last name', max_length=120)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE, verbose_name='Group')
+    unique_code = models.CharField('Student code', max_length=11, default='1')
 
     def __str__(self):
         return self.name
-    
-    class Meta:
-        verbose_name = "Ученика"
-        verbose_name_plural = "Ученики"
     
     def getCommentsCount(self):
         return len(Comment.objects.filter(student=self))
@@ -59,20 +47,15 @@ class Student(models.Model):
 
 
 class Comment(models.Model):
-    title =  models.CharField('Заголовок', max_length=200)
-    date = models.DateTimeField(auto_now_add=True, verbose_name='Дата и время')
-    comment = models.TextField('Комментарий')
-    results = models.TextField('Результаты')
-    student = models.ForeignKey(Student, on_delete=models.CASCADE, verbose_name='Ученик')
-    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, verbose_name='Учитель')
-
+    title =  models.CharField('Title', max_length=200)
+    date = models.DateTimeField(auto_now_add=True, verbose_name='Date and time')
+    comment = models.TextField('Comment')
+    results = models.TextField('Results')
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
-    
-    class Meta:
-        verbose_name = "Комментарий"
-        verbose_name_plural = "Комментарии"
     
     def getTeacherName(self):
         return self.teacher.name + " " + self.teacher.lastname

@@ -1,5 +1,6 @@
-# from django import forms
-# from .models import Comment
+from django import forms
+from .models import Comment, Teacher
+
 
 # class CommentForm(forms.ModelForm):
 #     class Meta:

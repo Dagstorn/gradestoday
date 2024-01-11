@@ -3,7 +3,6 @@ from .models import Teacher, Group, Student, Comment
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
 from django.contrib.auth.decorators import login_required
-# from .forms import CommentForm
 
 def index(request):
     if request.method == 'POST':
@@ -28,7 +27,7 @@ def index(request):
             else:
                 return redirect("index")
         else:
-            messages.error(request, 'Неверные данные')
+            messages.error(request, 'Wrong credentials')
             return redirect("index")
     else:
         comments = Comment.objects.all()
@@ -40,11 +39,16 @@ def index(request):
         else: 
             teacher = None
         students = Student.objects.all()
+        teacherStatus = None
+
+        if teacher:
+            teacherStatus = teacher.status
 
         context = {
             'comments':comments,
             'teacher': teacher,
-            'students':students
+            'students':students,
+            'teacherStatus': teacherStatus
         }
         return render(request, 'handler/index.html', context)
 
@@ -61,16 +65,16 @@ def register(request):
 
         if password1 == password2:
             if User.objects.filter(username=username).exists():
-                messages.error(request, 'Логин недоступен. Попробуйте другой')
+                messages.error(request, 'Username is taken')
                 return redirect('register')
             elif User.objects.filter(email=email).exists():
-                messages.error(request, 'Пользователь с таким email адресом уже зарегестрирован!')
+                messages.error(request, 'This email is already registered!')
                 return redirect('register')
             elif len(password1) < 7:
-                messages.error(request, 'Пароль слишком короткий!')
+                messages.error(request, 'Password is too short!')
                 return redirect('register')
             elif password1 == firstname or password1 == lastname or password1 == username or password1 == 'password':
-                messages.error(request, 'Пароль слишком простой!')
+                messages.error(request, 'Password is too simple!')
                 return redirect('register')
             else:
                 user = User.objects.create_user(username=username, password=password1, email=email, first_name=firstname, last_name=lastname)
@@ -78,16 +82,13 @@ def register(request):
 
                 teacher = Teacher(name=firstname, lastname=lastname, phone=phone, subject=subject, user=user)
                 teacher.save()
-                messages.success(request, 'Пользователь создан успешно! Вы можете войти в аккаунт')
+                messages.success(request, 'The account was created successfully! You can log in to your account')
                 return redirect('index')
-
         else:
-            messages.error(request, 'Пароли не совпадают!')
-            return redirect('register')           
-        return redirect('index')
+            messages.error(request, 'Passwords do not match!')
+            return redirect('register')    
     else:
-        context = {}
-        return render(request, 'handler/register.html', context)
+        return render(request, 'handler/register.html', {})
 
 #function logout
 def logout(request):
@@ -126,7 +127,7 @@ def teacher_start(request):
 def create_comment(request, id):
     if request.method == 'POST':
         title = request.POST.get('title')
-        positive = request.POST.get('positive')
+        comment = request.POST.get('comment')
         results = request.POST.get('results')
         user = request.user
         teacher = Teacher.objects.get(user=user)
@@ -134,10 +135,10 @@ def create_comment(request, id):
 
         student = Student.objects.get(id=id)
 
-        new_comment = Comment(title=title, positive=positive, results=results, student=student, teacher=teacher)
+        new_comment = Comment(title=title, comment=comment, results=results, student=student, teacher=teacher)
         new_comment.save()
         
-        messages.success(request, 'Комментарий сохранен!')
+        messages.success(request, 'Comment is saved!')
         return redirect('start')
     else:
         if request.user.is_authenticated:
@@ -155,7 +156,6 @@ def create_comment(request, id):
             return redirect("index")
 
         context = {
-            # 'form': CommentForm
         }
         return render(request, 'handler/comment.html', context)
 

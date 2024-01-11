@@ -7,23 +7,23 @@
             {% if student %}
             <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">Ученик - {{student.lastname}} {{student.name}}</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">Группа: {{student.group}}</h6>
-                  <h6 class="card-subtitle mb-2 text-muted">Уникальный код: {{student.unique_code}}</h6>
+                  <h5 class="card-title">Student - {{student.lastname}} {{student.name}}</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Group: {{student.group}}</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">Unique code: {{student.unique_code}}</h6>
 
-                  <h6 class="card-subtitle mb-2 text-muted">Количество комментариев: {{student.getCommentsCount}}</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">Number of comments: {{student.getCommentsCount}}</h6>
                   {% if teacher %}
-                  <a href="{% url 'create_comment' student.id %}" class="card-link">Написать комментарий</a>
+                  <a href="{% url 'create_comment' student.id %}" class="card-link">Write a comment</a>
                   {% endif %}
                 </div>
             </div>
             {% else %}
             <div class="alert alert-danger" role="alert">
-                <h4 class="alert-heading">Ученик не найден!</h4>
-                <p>Вы ввели код ученика неверно либо ученика с таким кодом не существует.</p>
-                <p>Попробуйте ввести код корректно или запросить его заново!</p>
+                <h4 class="alert-heading">Student not found!</h4>
+                <p>You entered the student's code incorrectly or there is no student with such code.</p>
+                <p>Try to enter the code correctly or request it again!</p>
                 <hr>
-                <p class="mb-0"><a href="{% url 'index' %}" class="card-link">Попробовать еще раз</a></p>
+                <p class="mb-0"><a href="{% url 'index' %}" class="card-link">Try again</a></p>
               </div>
             {% endif %}
         </div>
@@ -38,13 +38,13 @@
                         <div class="card" style="background-color: #f8f8f8;">
                             <div class="card-body">
                             <h5 class="card-title">{{comment.title}}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Учитель: {{comment.getTeacherName}}  - {{comment.getTeacherPhone}}</h6>
-                            <h6 class="card-subtitle mb-2 text-muted">Предмет: {{comment.getTeachersubject}}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">Teacher: {{comment.getTeacherName}}  - {{comment.getTeacherPhone}}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">Subject: {{comment.getTeachersubject}}</h6>
 
-                            <p class="card-text mb-0"><b>Комментарии:</b>
+                            <p class="card-text mb-0"><b>Comment:</b>
                                 {{comment.comment|linebreaks}}                                            
                             </p>
-                            <p class="card-text mb-0"><b>Результаты:</b>
+                            <p class="card-text mb-0"><b>Results:</b>
                                 {{comment.results|linebreaks}}
                             </p>                            
                             

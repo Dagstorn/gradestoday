@@ -7,19 +7,19 @@
             <div class="col-md-6 d-flex justify-content-center">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Поиск ученика</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Введите код ученика чтобы посмотреть комментарии учителей</h6>
+                        <h5 class="card-title">Find a student</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Enter the student's code to view the teacher's comments</h6>
                         <form method="GET" action="{% url 'student_comments' %}">
                             
                             <p class="card-text">
                                 <div class="row">
                                     <div class="col-md">
-                                        <input type="text" name="code" class="form-control" placeholder="Уникальный код студента">
+                                        <input type="text" name="code" class="form-control" placeholder="Student's unique code">
                                     </div>
                                 </div>
-                                <div class="row mt-3 ">
+                                <div class="row mt-3">
                                     <div class="col">
-                                        <button  class="btn-block my-btn">Найти ученика</button>
+                                        <button  class="btn-block my-btn">Find a student</button>
                                     </div>
                                 </div>
                             </p>
@@ -33,19 +33,21 @@
                         {% if user.is_authenticated %}
                         <div class="row">
                             <div class="col">
-                                <h3>Вы вошли как {{ user.username }}</h3>
+                                <h3>You are logged in as {{ user.username }}</h3>
+                                {% if teacher %}
+                                {% if not teacher.status %}
+                                <p>Your are not verified as teacher yet... <br>
+                                Wait for verification by your supervisor</p>
+                                {% endif %}
+                                {% endif %}
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col">
-                                <a href="logout/" class="btn my-btn">Выйти</a>
-                            </div>
-                        </div>
+                        
 
                         {% else %}
-                        <h5 class="card-title">Войти в систему</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Вход для учителей</h6>
+                        <h5 class="card-title">Login</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Login as teacher</h6>
                         <p class="card-text">
                             {% if messages %}
                             <div class="row ">
@@ -61,22 +63,22 @@
                                 {% csrf_token %}
                             <div class="row">
                                 <div class="col">
-                                    <input type="text" name="username" class="form-control" placeholder="Логин">
+                                    <input type="text" name="username" class="form-control" placeholder="username">
                                 </div>
                             </div>
                             <div class="row mt-3">
                                 <div class="col">
-                                <input type="password" name="password" class="form-control" placeholder="Пароль">
+                                <input type="password" name="password" class="form-control" placeholder="password">
                                 </div>
                             </div>
                             <div class="row mt-3">
                                 <div class="col">
-                                    <button  class="btn-block my-btn">Войти</button>
+                                    <button  class="btn-block my-btn">Login</button>
                                 </div>
                             </div>
                             </form>
                         </p>
-                        <a href="{% url 'register' %}"  class="card-link">зарегистрировать учителя</a>
+                        <a href="{% url 'register' %}"  class="card-link">Register as a teacher</a>
                         {% endif %}
                     </div>
                   </div>

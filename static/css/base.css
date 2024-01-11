@@ -102,6 +102,13 @@ footer {
 .lable {
     margin-bottom: 0;
 }
-.comment {
+.my-link-btn {
+    color: #1e2b3d;
+    background: none;
+    border: none;
+}
+.my-link-btn:focus {
+    border: none;
+    outline: none;
 
 }

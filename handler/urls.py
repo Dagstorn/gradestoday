@@ -11,7 +11,4 @@ urlpatterns = [
 
     path('student/comments/', views.student_comments, name = 'student_comments'),
 
-
-
-    # path('kolesafilters/', views.kolesafilters, name='kolesafilters'),
 ]

@@ -4,30 +4,30 @@
 <div class="container">
     <div class="row d-flex justify-content-center mt-4">
         <div class="col-md-6">
-            <h3>Комментарий</h3>
+            <h3>Comment</h3>
             <form action="" method="POST">
                 {% csrf_token %}
                 <div class="row mt-3">
                     <div class="col">
-                        <label for="title">Заголовок</label>
+                        <label for="title">Title</label>
                         <input class="form-control" type="text" name="title" required>
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col">
-                        <label for="positive">Комментарий</label>
-                        <textarea class="form-control" name="positive" rows="5" required></textarea>
+                        <label for="comment">Comment</label>
+                        <textarea class="form-control" name="comment" rows="5" required></textarea>
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col">
-                        <label for="negative">Результаты</label>
+                        <label for="results">Results</label>
                         <textarea class="form-control" name="results" rows="5" required></textarea>
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col">
-                        <input type="submit" value="Сохранить" class="my-btn btn-block"> 
+                        <input type="submit" value="Save" class="my-btn btn-block"> 
                     </div>
                 </div>
             </form>
